@@ -43,8 +43,7 @@ class TweetDetailViewController: UIViewController {
         TwitterClient.sharedInstance?.retweet(id: "\(tweet!.id as! String)", success: {
             self.createAlert(title: "OK", message: "You've retweeted this tweet.")
             self.retweetCountLabel.text = String((self.tweet?.retweetCount)! + 1)
-            }, failure: { (errorBAD) in
-                let error = errorBAD as Error
+            }, failure: { (error) in
                 self.createAlert(title: "Oops", message: error.localizedDescription)
         })
     }
@@ -53,8 +52,7 @@ class TweetDetailViewController: UIViewController {
         TwitterClient.sharedInstance?.favoriteTweet(id: "\(tweet!.id as! String)", success: {
             self.createAlert(title: "OK", message: "You've favorited this tweet.")
             self.favoritesCountLabel.text = String((self.tweet?.favoritesCount)! + 1)
-            }, failure: { (errorBAD) in
-                let error = errorBAD as Error
+            }, failure: { (error) in
                 self.createAlert(title: "Oops", message: error.localizedDescription)
         })
     }

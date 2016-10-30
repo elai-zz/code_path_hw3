@@ -31,12 +31,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
           tableView.estimatedRowHeight = 100
           tableView.rowHeight = UITableViewAutomaticDimension
           
-          // Initialize a UIRefreshControl
           let refreshControl = UIRefreshControl()
           refreshControl.addTarget(self, action: #selector(self.refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
-          // add refresh control to table view
           tableView.insertSubview(refreshControl, at: 0)
-          
+     
           self.navigationController?.navigationBar.isTranslucent = false
           self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 0, green: 172, blue: 237, alpha: 1)
      }
@@ -70,9 +68,23 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                cell.tweetLabel.text = tweet.text as String?
                cell.handleLabel.text = "@\(tweet.screenName as! String)"
                cell.profileImageView.setImageWith(tweet.imageURL!)
-               // TODO: set time
+               cell.timeStampLabel.text = getTimeDifference(createdDate: tweet.timestamp!)
           }
           return cell
+     }
+     
+     func getTimeDifference(createdDate: NSDate) -> String {
+          let datetimeNow = NSDate()
+          let timeInterval = datetimeNow.timeIntervalSince(createdDate as Date) // in seconds
+          if (timeInterval < 60) {
+               return "\(Int(ceil(timeInterval)))s"
+          } else if (timeInterval < 3600) {
+               return "\(Int(ceil(timeInterval/60)))m"
+          } else if (timeInterval < 86400) {
+               return "\(Int(ceil(timeInterval/3600)))h"
+          } else {
+               return "\(Int(ceil(timeInterval/86400)))d"
+          }
      }
      
      func showTweetDetailViewController(for segue: UIStoryboardSegue, sender: Any?) {

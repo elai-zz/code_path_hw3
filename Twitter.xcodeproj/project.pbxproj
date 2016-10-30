@@ -39,6 +39,7 @@
 		AE35D6A41DC54508009D803B /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		AE35D6A61DC57767009D803B /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		AE35D6AA1DC5D48B009D803B /* ComposeTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTweetViewController.swift; sourceTree = "<group>"; };
+		AE35D6AC1DC682F6009D803B /* Twitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Twitter.entitlements; sourceTree = "<group>"; };
 		D8CE368879F36861F3D9E60D /* Pods-Twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +93,7 @@
 		AE35D6841DC505B3009D803B /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				AE35D6AC1DC682F6009D803B /* Twitter.entitlements */,
 				AE35D69B1DC528F3009D803B /* API */,
 				AE35D69A1DC528DF009D803B /* View Controllers */,
 				AE35D6991DC528DA009D803B /* Models */,
@@ -168,7 +170,13 @@
 				TargetAttributes = {
 					AE35D6811DC505B3009D803B = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = P2E8APBYH3;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -386,6 +394,8 @@
 			baseConfigurationReference = 2513318035166D487AB5F08A /* Pods-Twitter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Twitter/Twitter.entitlements;
+				DEVELOPMENT_TEAM = P2E8APBYH3;
 				INFOPLIST_FILE = Twitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.estella.Twitter;
@@ -399,6 +409,8 @@
 			baseConfigurationReference = D8CE368879F36861F3D9E60D /* Pods-Twitter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Twitter/Twitter.entitlements;
+				DEVELOPMENT_TEAM = P2E8APBYH3;
 				INFOPLIST_FILE = Twitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.estella.Twitter;

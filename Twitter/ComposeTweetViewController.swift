@@ -35,6 +35,7 @@ class ComposeTweetViewController: UIViewController {
             }, failure: { (error) in
                 print("Error : \(error.localizedDescription)")
         })
+        // This is probably not correct...
         _ = self.navigationController?.popViewController(animated: true)
     }
     
