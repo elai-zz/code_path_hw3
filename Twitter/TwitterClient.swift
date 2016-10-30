@@ -16,16 +16,16 @@ class TwitterClient: BDBOAuth1SessionManager {
     var loginSuccess: (() -> ())?
     var loginFailure: ((NSError) -> ())?
     
-    func currentAccount() {
+    func currentAccount(success: @escaping (User) -> (), failure: @escaping  (Error) -> ()) {
         get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (_: URLSessionDataTask, response: Any?) in
             
             let userDictionary = response as! NSDictionary
             let user = User(dictionary: userDictionary)
             
-            print("name: \(user.name)")
-            print("screenname:\(user.screenName)")
+            success(user)
             
-            }, failure: { (failure: URLSessionDataTask?, error: Error) in
+            }, failure: { (task: URLSessionDataTask?, error: Error) in
+                failure(error)
                 print("error: \(error.localizedDescription)")})
     }
     
@@ -33,8 +33,12 @@ class TwitterClient: BDBOAuth1SessionManager {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
-            self.loginSuccess?()
-            },failure: { (error) in
+            self.currentAccount(success: { (user) in
+                self.loginSuccess?()
+                User.currentUser = user
+                }, failure: {(error) in
+                    self.loginFailure?(error as NSError)
+            })}, failure: { (error) in
                 print("error: \(error?.localizedDescription)")
                 self.loginFailure?(error as! NSError)
         })
@@ -67,6 +71,14 @@ class TwitterClient: BDBOAuth1SessionManager {
                 failure(error as NSError)
         })
     
+    }
+    
+    func tweet(status: String, success: @escaping() -> (), failure: @escaping (Error) -> ()) {
+        post("1.1/statuses/update.json?status=\(status)", parameters: nil, progress: nil, success: { (task, response) in
+            success()
+        }) { (task, error) in
+            failure(error as NSError)
+        }
     }
     
     func favoriteTweet(id: String, success: @escaping() -> (), failure: @escaping (NSError) -> ()) {

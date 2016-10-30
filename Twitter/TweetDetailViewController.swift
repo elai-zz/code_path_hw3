@@ -22,6 +22,9 @@ class TweetDetailViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 0, green: 172, blue: 237, alpha: 1)
+
         if let tweet = tweet {
             tweetLabel.text = tweet.text as String?
             handleLabel.text = "@\(tweet.screenName as! String)"
@@ -55,7 +58,6 @@ class TweetDetailViewController: UIViewController {
                 self.createAlert(title: "Oops", message: error.localizedDescription)
         })
     }
-    
    
     func createAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -63,4 +65,11 @@ class TweetDetailViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ReplyTweetSegue") {
+            let composeViewController = segue.destination as! ComposeTweetViewController
+            composeViewController.handle = "\(handleLabel.text!) "
+        }
+    }
+    
 }
