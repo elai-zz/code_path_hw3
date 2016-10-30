@@ -18,7 +18,7 @@ class User: NSObject {
     // deserialization code
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String as NSString?
-        screenName = dictionary["ame"] as? String as NSString?
+        screenName = dictionary["screen_name"] as? String as NSString?
         tagline = dictionary["description"] as? String as NSString?
         let profileUrlString = dictionary["profile_image_url_https"] as? String
         if let profileUrlString = profileUrlString {

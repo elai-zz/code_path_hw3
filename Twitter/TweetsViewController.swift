@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import AFNetworking
 
-class TweetsViewController: UIViewController {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet]!
     
     override func viewDidLoad() {
@@ -22,9 +24,16 @@ class TweetsViewController: UIViewController {
             self.tweets = tweets
             for tweet in tweets {
                 print(tweet.text)
-            }}, failure: { (error) in
+            }
+            self.tableView.reloadData()
+            }, failure: { (error) in
                 print(error.localizedDescription)
         })
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,15 +41,36 @@ class TweetsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (tweets != nil) ? tweets.count : 0
     }
-    */
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "com.TweetCell", for: indexPath) as! TweetCell
+        if (tweets) != nil {
+            let tweet = self.tweets[indexPath.row]
+            cell.tweetLabel.text = tweet.text as String?
+            cell.handleLabel.text = "@\(tweet.screenName as! String)"
+            // TODO: not working?
+            cell.profileImageView.setImageWith(tweet.imageURL!)
+            // TODO: set time
+        }
+        return cell
+    }
+    
+    func showTweetDetailViewController(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! TweetCell
+        let indexPath = tableView.indexPath(for: cell)
+        let tweet = tweets[(indexPath?.row)!]
+        
+        let tweetDetailViewController = segue.destination as! TweetDetailViewController
+        tweetDetailViewController.tweet = tweet
+    }
+    
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "tweetDetailSegue") {
+            showTweetDetailViewController(for: segue, sender: sender)
+        }
+    }
 
 }
