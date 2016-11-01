@@ -16,8 +16,9 @@ class ComposeTweetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tweetTextField.text = handle
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 0, green: 172, blue: 237, alpha: 1)
+        self.navigationController?.isNavigationBarHidden = false
+//        self.navigationController?.navigationBar.isTranslucent = false
+//        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 0, green: 172, blue: 237, alpha: 1)
         // Do any additional setup after loading the view.
     }
 
@@ -35,13 +36,12 @@ class ComposeTweetViewController: UIViewController {
             }, failure: { (error) in
                 print("Error : \(error.localizedDescription)")
         })
-        // This is probably not correct...
-        _ = self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onCancelButton(_ sender: AnyObject) {
         // But I don't know why this works to undo a pushed view
-        _ = self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func createAlert() {

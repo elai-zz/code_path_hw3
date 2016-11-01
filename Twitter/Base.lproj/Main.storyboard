@@ -128,7 +128,7 @@
                         <barButtonItem key="rightBarButtonItem" title="New" id="CkN-H2-789">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="FtP-ed-ND7" kind="show" identifier="NewTweetSegue" id="4jt-Kf-3NZ"/>
+                                <segue destination="ofq-DQ-Fyi" kind="presentation" identifier="NewTweetSegue" id="psx-Zr-5iV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -230,7 +230,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Reply" id="Zp0-Ng-qMb">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="FtP-ed-ND7" kind="show" identifier="ReplyTweetSegue" id="khL-3y-dru"/>
+                                <segue destination="ofq-DQ-Fyi" kind="presentation" identifier="ReplyTweetSegue" id="DMj-YB-mXk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -307,13 +307,13 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Compose" id="K1P-w8-oaR">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="q9g-1T-mnq">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="onCancelButton:" destination="FtP-ed-ND7" id="v0A-CA-FAX"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Tweet" id="GCV-Qm-lxQ">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onTweetButton:" destination="FtP-ed-ND7" id="Txh-G4-MSA"/>
                             </connections>
@@ -326,10 +326,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1L-bN-xcD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="3172" y="912.5937031484259"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NtK-SV-jQV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ofq-DQ-Fyi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XGd-CG-Iyx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FtP-ed-ND7" kind="relationship" relationship="rootViewController" id="jM9-cY-4Kt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Elq-tN-H6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="2232.8000000000002" y="912.5937031484259"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="khL-3y-dru"/>
+        <segue reference="DMj-YB-mXk"/>
     </inferredMetricsTieBreakers>
 </document>
