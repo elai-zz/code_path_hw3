@@ -16,6 +16,9 @@ The following **required** functionality is completed:
 - [X] User can compose a new tweet by tapping on a compose button.
 - [X] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
 
+Optional Functionality
+- [X] The favorites and retweet counts automatically increments by 1 when a user clicks on the respective button.
+
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1. Talking more about the different types of segues and when to use which.
@@ -25,7 +28,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://media.giphy.com/media/l3vR61OUEj0RK4hpe/source.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.giphy.com/l3vR9JCvjaqnPMhuE.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -33,7 +36,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 This project was pretty straight forward for the most part. Unfortunately I didn't have as much time as I'd like to implement and fine tune the product. I'd forgotten to enable key sharing which is a feature that was needed for user persistence. As a result, I was getting 403 Forbidden responses, which unfortunately was really cryptic. I also had a lot of trouble coloring the navigation bar to the color I wanted. 
 
-I think the biggest challenge to me this week was deciding how to show the Compose View. I believe the best practice is to use a modal view, but I had difficulties passing information into the view when I embedded in a navigation control.
+I think the biggest challenge to me this week was deciding how to show the Compose View. I believe the best practice is to use a modal view, but I had difficulties passing information into the view when I embedded in a navigation control. It probably didn't help that I was trying to fix it at 2 AM...
 
 Lastly, there was a lot of freedom with how we could design the UI. If I had more time I'd like to explore better ways to arrange the elements on the View.
 
