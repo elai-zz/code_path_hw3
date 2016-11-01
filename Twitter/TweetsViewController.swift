@@ -34,9 +34,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
           let refreshControl = UIRefreshControl()
           refreshControl.addTarget(self, action: #selector(self.refreshControlAction(refreshControl:)), for: UIControlEvents.valueChanged)
           tableView.insertSubview(refreshControl, at: 0)
-     
-          self.navigationController?.navigationBar.isTranslucent = false
-          self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 0, green: 172, blue: 237, alpha: 1)
      }
      
      override func didReceiveMemoryWarning() {

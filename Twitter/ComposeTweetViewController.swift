@@ -10,16 +10,16 @@ import UIKit
 
 class ComposeTweetViewController: UIViewController {
 
-    @IBOutlet weak var tweetTextField: UITextField!
+
+    @IBOutlet weak var tweetTextField: UITextView!
     var handle: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tweetTextField.text = handle
-        self.navigationController?.isNavigationBarHidden = false
-//        self.navigationController?.navigationBar.isTranslucent = false
-//        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 0, green: 172, blue: 237, alpha: 1)
         // Do any additional setup after loading the view.
+        tweetTextField.layer.borderWidth = 0.5
+        tweetTextField.layer.cornerRadius = 3.0
     }
 
     override func didReceiveMemoryWarning() {

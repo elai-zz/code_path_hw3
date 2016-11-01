@@ -22,16 +22,18 @@ class TweetDetailViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 0, green: 172, blue: 237, alpha: 1)
 
         if let tweet = tweet {
             tweetLabel.text = tweet.text as String?
             handleLabel.text = "@\(tweet.screenName as! String)"
             retweetCountLabel.text = String(tweet.retweetCount)
             favoritesCountLabel.text = String(tweet.favoritesCount)
-            dateLabel.text = String(describing: tweet.timestamp!)
+            let dateLabelStirng = String(describing: tweet.timestamp!)
+            let dateLabelArray = dateLabelStirng.components(separatedBy: " ")
+            dateLabel.text = "\(dateLabelArray[0]) \(dateLabelArray[1])"
         }
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     override func didReceiveMemoryWarning() {
